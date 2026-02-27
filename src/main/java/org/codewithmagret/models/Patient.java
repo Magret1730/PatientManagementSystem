@@ -4,9 +4,23 @@ package org.codewithmagret.models;
  * Model class representing a Patient entity with id, name, and reason for visit.
  */
 public class Patient {
+    /**
+     * The ID of the patient.
+     * This field is used to uniquely identify a patient in the system.
+     */
     private Long id;
+
+    /**
+     * The name of the patient.
+     * This field is used to store the patient's full name.
+     */
     private String name;
-    private int reasonForVisit;
+
+    /**
+     * The reason for the patient's visit.
+     * This field is used to store the reason why the patient is visiting the healthcare facility.
+     */
+    private String reasonForVisit;
 
     /**
      * Default constructor for Patient. Required for JSON deserialization.
@@ -20,7 +34,7 @@ public class Patient {
      * @param name the name of the patient
      * @param reasonForVisit the reason for the patient's visit
      */
-    public Patient(Long id, String name, int reasonForVisit) {
+    public Patient(Long id, String name, String reasonForVisit) {
         this.id = id;
         this.name = name;
         this.reasonForVisit = reasonForVisit;
@@ -54,13 +68,13 @@ public class Patient {
      * Getter for reasonForVisit
      * @return the reason for the patient's visit
      */
-    public int getReasonForVisit() { return reasonForVisit; }
+    public String getReasonForVisit() { return reasonForVisit; }
 
     /**
      * Setter for reasonForVisit
      * @param reasonForVisit the reason for the patient's visit to set
      */
-    public void setReasonForVisit(int reasonForVisit) { this.reasonForVisit = reasonForVisit; }
+    public void setReasonForVisit(String reasonForVisit) { this.reasonForVisit = reasonForVisit; }
 
     /**
      * Returns a string representation of the Patient object.

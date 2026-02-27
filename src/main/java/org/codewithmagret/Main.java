@@ -1,7 +1,9 @@
 package org.codewithmagret;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+/**
+ * Main class for the Java application.
+ * This class contains the main method which serves as the entry point of the application.
+ */
 public class Main {
     static void main() {
         System.out.println("Hello and welcome to the world of Java programming!");
