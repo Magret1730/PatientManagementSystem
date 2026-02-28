@@ -1,19 +1,6 @@
 package org.codewithmagret.history;
 
-import org.codewithmagret.models.Patient;
 import org.codewithmagret.models.PatientRecord;
-import java.time.LocalDate;
-import java.util.List;
-
-/**
- * Patient History System using a Doubly Linked List.
- *
- * Requirements covered:
- * - Include at least 10 patient history records (seedTenRecords)
- * - Navigate next / previous from a current position
- * - Display newest (tail) and oldest (head)
- * - Prevent navigation past head or tail
- */
 
 /**
  * Class representing a list of patient history records. This class can be used to store and manage
@@ -26,7 +13,7 @@ public class PatientHistoryList {
     public DoubleNode current;
 
     /**
-     * Default constructor for PatientHistoryList. Required for JSON deserialization.
+     * Default constructor for PatientHistoryList.
      */
     public PatientHistoryList() {}
 
@@ -99,6 +86,7 @@ public class PatientHistoryList {
             return;
         }
 
+        // Insert the new node at the specified location in the middle of the list
         DoubleNode tempNode = head;
         int index = 0;
         // Takes the node to its position before the location where the new node will be inserted
@@ -123,9 +111,8 @@ public class PatientHistoryList {
      * @return a string representation of the patient history list,
      *          showing the records from oldest to newest
      */
-    public String nextPatientRecord (){
+    public String patientRecordOldestToNewest () {
         StringBuilder sb = new StringBuilder();
-        sb.append("Patient History List: (Oldest -> Newest):\n");
 
         if (head == null) {
             sb.append("(Empty PatientRecord)\n");
@@ -136,7 +123,7 @@ public class PatientHistoryList {
         for (int i = 0; i < size; i++){
             sb.append(tempNode.patientRecord);
             if (i != size - 1){
-                sb.append(" <-> ");
+                sb.append("\n");
             }
             tempNode = tempNode.next;
         }
@@ -150,9 +137,8 @@ public class PatientHistoryList {
      *
      * @return a string representation of the patient history list,
      */
-    public String reversePatientRecord (){
+    public String PatientRecordNewestToOldest() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Patient History List: (Newest -> Oldest):\n");
 
         if (head == null) {
             sb.append("(Empty PatientRecord)\n");
@@ -163,7 +149,7 @@ public class PatientHistoryList {
         for (int i = 0; i < size; i++){
             sb.append(tempNode.patientRecord);
             if (i != size - 1){
-                sb.append(" <-> ");
+                sb.append("\n");
             }
             tempNode = tempNode.previous;
         }
@@ -201,7 +187,9 @@ public class PatientHistoryList {
     /**
      * Navigates to the next patient record in the history list.
      *
-     * @return the next PatientRecord object in the history list, or null if there is no next record
+     * @return the next PatientRecord object in the history list,
+     *          or the last record if there is no next record,
+     *          or null if the list is empty
      */
     public PatientRecord navigateToNextRecord() {
         if (current == null) {
@@ -219,7 +207,9 @@ public class PatientHistoryList {
     /**
      * Navigates to the previous patient record in the history list.
      *
-     * @return the previous PatientRecord object in the history list, or null if there is no previous record
+     * @return the previous PatientRecord object in the history list,
+     *          or the first record if there is no previous record,
+     *          or null if the list is empty
      */
     public PatientRecord navigateToPreviousRecord() {
         if (current == null) {
@@ -235,8 +225,35 @@ public class PatientHistoryList {
     }
 
     /**
-     * Requirement: include at least 10 records.
-     * Call this in Main or when starting the history menu.
+     * Retrieves the current patient record at the current position in the history list.
+     *
+     * @return the current PatientRecord object, or null if there is no current record
+     */
+    public PatientRecord getCurrentRecord() {
+        return current == null ? null : current.patientRecord;
+    }
+
+    /**
+     * Checks if the current position is at the newest record (the tail).
+     *
+     * @return true if the current position is at the newest record, false otherwise
+     */
+    public boolean isAtNewest() {
+        return current != null && current == tail;
+    }
+
+    /**
+     * Checks if the current position is at the oldest record (the head).
+     *
+     * @return true if the current position is at the oldest record, false otherwise
+     */
+    public boolean isAtOldest() {
+        return current != null && current == head;
+    }
+
+    /**
+     * Seeds the patient history list with 10 records.
+     * This method is used to populate the history list with sample data.
      */
     public void seedTenRecords() {
         addToPatientRecord(new PatientRecord("2026-01-01", "Flu", "Rest, hydration"), size);
@@ -250,6 +267,6 @@ public class PatientHistoryList {
         addToPatientRecord(new PatientRecord("2026-02-02", "Skin rash", "Topical cream"), size);
         addToPatientRecord(new PatientRecord("2026-02-10", "Follow-up", "Improving"), size);
 
-//        navigateToNewestRecord();
+        navigateToNewestRecord();
     }
 }

@@ -4,11 +4,17 @@ package org.codewithmagret.models;
  * Model class representing a Patient entity with id, name, and reason for visit.
  */
 public class Patient {
+
+    /**
+     * Static counter to generate unique IDs for patients.
+     */
+    private static int idCounter = 1;
+
     /**
      * The ID of the patient.
      * This field is used to uniquely identify a patient in the system.
      */
-    private Long id;
+    private String id;
 
     /**
      * The name of the patient.
@@ -30,12 +36,11 @@ public class Patient {
     /**
      * Parameterized constructor for Patient.
      *
-     * @param id the ID of the patient
      * @param name the name of the patient
      * @param reasonForVisit the reason for the patient's visit
      */
-    public Patient(Long id, String name, String reasonForVisit) {
-        this.id = id;
+    public Patient(String name, String reasonForVisit) {
+        this.id = generateId();
         this.name = name;
         this.reasonForVisit = reasonForVisit;
     }
@@ -44,13 +49,16 @@ public class Patient {
      * Getter for id
      * @return the ID of the patient
      */
-    public Long getId() { return id; }
+    public String getId() { return id; }
 
     /**
-     * Setter for id
-     * @param id the ID of the patient to set
+     * Generates a unique ID for the patient using a static counter.
+     *
+     * @return a unique ID string for the patient
      */
-    public void setId(Long id) { this.id = id; }
+    private String generateId() {
+        return "P" + (idCounter++);
+    }
 
     /**
      * Getter for name
@@ -83,7 +91,7 @@ public class Patient {
      */
     @Override
     public String toString() {
-        return "Patient{" +
+        return "Patient { " +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", reasonForVisit=" + reasonForVisit +
