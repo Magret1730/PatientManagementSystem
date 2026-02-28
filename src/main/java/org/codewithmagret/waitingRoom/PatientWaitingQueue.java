@@ -2,7 +2,6 @@ package org.codewithmagret.waitingRoom;
 
 import org.codewithmagret.models.Patient;
 import java.util.LinkedList;
-import java.util.NoSuchElementException;
 
 /**
  * Class representing a patient waiting queue using a LinkedList to manage patients.
@@ -73,7 +72,6 @@ public class PatientWaitingQueue {
      */
     public String printAllPatientInQueue() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Patient Waiting Queue:\n");
         for (Patient patient : patientList) {
             sb.append(patient.toString()).append("\n");
         }

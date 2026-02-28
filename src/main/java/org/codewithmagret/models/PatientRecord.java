@@ -86,7 +86,7 @@ public class PatientRecord {
      */
     @Override
     public String toString() {
-        return "PatientRecord{" +
+        return "PatientRecord { " +
                 "visitDate=" + visitDate +
                 ", diagnosis='" + diagnosis + '\'' +
                 ", treatmentNotes='" + treatmentNotes + '\'' +
